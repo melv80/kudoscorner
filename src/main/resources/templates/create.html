@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Create a Kudos card</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Red+Rose&display=swap" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+<!--<div class="container fill rounded border border-secondary"-->
+<!--     style="background-image: url('/vintage.png'); background-repeat: repeat; background-size: auto; background-position: center ;">-->
+<div class="container fill ">
+    <div class="row mt-5">
+        <div class="col-sm-5 mx-auto">
+            <h1 class="text-center">Create a card</h1>
+            <h5 class="text-center">Say thank you!</h5>
+        </div>
+    </div>
+
+    <form th:action="@{/create}" th:object="${newCard}" method="post">
+
+
+        <div class="row mt-5">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="form-group">
+                    <label for="kudostype">Type of card</label>
+                    <select class="form-control" th:field="*{kudostype}" id="kudostype">
+                        <option th:each="kudostype : ${T(com.kudos.server.model.jpa.KudosType).typeList()}"
+                                th:value="${kudostype}"
+                                th:text="${kudostype.formattedText}"
+                        ></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea type="text" class="form-control" id="message" name="message" th:field="*{message}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="writer">this card is from</label>
+                    <input type="text" class="form-control" id="writer" placeholder="T. Stark" name="username" th:field ="*{writer}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-xl-12 text-center">
+                <input type="submit" class="btn btn-outline-dark" value="Create"/>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

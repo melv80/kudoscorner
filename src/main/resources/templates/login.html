@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Admin access</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Red+Rose&display=swap" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+<!--<div class="container fill rounded border border-secondary"-->
+<!--     style="background-image: url('/vintage.png'); background-repeat: repeat; background-size: auto; background-position: center ;">-->
+<div class="container fill ">
+    <div class="row mt-5">
+        <div class="col-sm-5 mx-auto">
+            <h1 class="text-center">Admin Access</h1>
+            <h5 class="text-center">Kudos Corner</h5>
+        </div>
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="row mt-5">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="form-group">
+                    <label for="usernameID">User</label>
+                    <input type="text" class="form-control" id="usernameID" placeholder="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="passwordID">Password</label>
+                    <input type="password" class="form-control" id="passwordID" name="password">
+                </div>
+            </div>
+        </div>
+        <div class="row text-content-default">
+            <div class="col-xl-12 text-center" th:if="${param.error}">
+                Invalid password.
+            </div>
+            <div class="col-xl-12 text-center" th:if="${param.logout}">
+                <p>Please log-in for administration</p>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-xl-12 text-center">
+                <input type="submit" class="btn btn-outline-dark" value="Anmelden"/>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

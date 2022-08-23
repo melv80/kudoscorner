@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title th:utext="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Red+Rose&display=swap" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- own style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body class="text-center">
+
+<div class="">
+    <main role="main" class="container">
+        <h1 th:utext="${title}"></h1>
+        <h2 th:utext="${kudoscards.size()}+' new cards since last week'"></h2>
+        <h5 th:utext="${contributors.size()}+' contributors'"></h5>
+
+        <div class="row mt-5">
+            <h3 th:utext="${greeting}"></h3>
+        </div>
+
+        <div class="row mt-5">
+            <!--                loop through cards -->
+            <div th:each="card, iterstat : ${kudoscards}" class="col-sm-4">
+                <div class="container">
+
+                    <div class="row">
+                        <!--                insert day of week -->
+                        <div th:if="${kudoscards.isFirstCardOfDay(iterstat.index)}">
+                            <h1><p th:utext="${kudoscards.getDayOfCard(iterstat.index)}"></p></h1>
+                            <h5><p th:utext="${card.formattedDate}"></p></h5>
+                        </div>
+                    </div>
+
+                    <!--                render card -->
+                    <div class="shadowbox m-2 row card">
+                        <img class="card-img" th:src="'/images/' + ${card.imageId}" alt="Kudos Card"/>
+
+                        <!--                        <div class="date card-img-overlay text-left"><p th:utext="${card.formatDate()}"></p></div>-->
+
+                        <div class="card-body">
+                            <h4 class="card-title text-left"><p th:utext="${card.title}"></p></h4>
+                            <p class="card-text" th:utext="${card.message}"></p>
+                            <h4 class="text-right"><p th:utext="${card.writer}"></p></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <h1 th:utext="${outro}"></h1>
+        </div>
+
+
+    </main>
+</div>
+
+
+</body>
+</html>

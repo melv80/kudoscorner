@@ -1,0 +1,24 @@
+
+body {
+    font-family: 'Red Rose', cursive;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+}
+
+h2 {
+    font-family: 'Pacifico', cursive;
+}
+
+h5 {
+    font-family: 'Pacifico', cursive;
+}
+
+.shadowbox {
+    box-shadow: 10px 10px 5px grey;
+}
+
+.date {
+    color: black;
+}
